@@ -98,7 +98,7 @@ lib.traverse(
 );
 ```
 
-#### `dom(jml: JsonMLNode, h): any`
+#### `dom(jml: JsonMLNode, h: VHypertext): any`
 
 `dom` accepts two arguments: a `JsonML` tree and a *Virtual Hypertext* function `h`, it
 feeds `JsomML` nodes one-by-one to the, Virtual Hypertext effectively creating a `Virtual DOM`.
@@ -108,7 +108,7 @@ By default it uses the bundled `h` function:
 ```js
 var vdom = lib.dom(
     ['div', {'class': 'wrapper'},
-        ['a', {'href': '#link'}, 'Click me!]
+        ['a', {'href': '#link'}, 'Click me!']
     ]
 );
 console.log(vdom); // <div class="wrapper"><a href="#link">Click me!</a></div>
