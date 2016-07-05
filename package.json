@@ -1,0 +1,21 @@
+{
+  "name": "jml-h",
+  "description": "JsonML with Virtual Hypertext",
+  "version": "1.0.0",
+  "keywords": [
+    "xml",
+    "html",
+    "javascript",
+    "generator",
+    "preprocessor",
+    "xml-light",
+    "html-light",
+    "xml-js",
+    "html-js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/streamich/jml-h"
+  },
+  "main": "index.js"
+}
