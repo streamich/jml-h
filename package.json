@@ -1,7 +1,7 @@
 {
   "name": "jml-h",
   "description": "JsonML with Virtual Hypertext",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "xml",
     "html",

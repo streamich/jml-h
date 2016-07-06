@@ -26,6 +26,16 @@ export function h(name: string, attributes: Tattributes = null, ...children: str
 }
 
 
+function _c(child, list, callback) {
+    if(child instanceof Array) {
+        // This flattens an array of children, makes compatible with React.
+        if(child[0] instanceof Array)
+            for(var j = 0; j < child.length; j++)
+                _c(child[j], list, callback);
+        else list.push(traverse(child, callback));
+    } else list.push(child);
+}
+
 export function traverse(jml, callback) {
     var children_start = 2;
     var attr = jml[1];
@@ -40,15 +50,7 @@ export function traverse(jml, callback) {
     // Add children
     for(var i = children_start; i < jml.length; i++) {
         var child = jml[i];
-        function c(child) {
-            if(child instanceof Array) {
-                // This flattens an array of children, makes compatible with React.
-                if(child[0] instanceof Array)
-                    for(var j = 0; j < child.length; j++) c(child[j]);
-                else list.push(traverse(child, callback));
-            } else list.push(child);
-        }
-        c(child);
+        _c(child, list, callback);
     }
     return callback(list);
 }
