@@ -191,6 +191,18 @@ Virtual Hypertext function is defined as follows:
 h(tag: string, attributes: {}, ...children: any[]): any;
 ```
 
+## Virtual Tag Functions
+
+Create convenience function `div()`, `span()`, etc..
+
+```js
+var h = lib.h;
+lib.tags(h, h, ['div', 'span']);
+var {div, span} = h;
+console.log(div({'class': 'test'}, span(null, 'Hello')));
+// <div class="test"><span>Hello</span></div>
+```
+
 ## Usage with React.js
 
 The second argument to the `dom()` function is a Virtual Hypertext generator function, you can provide

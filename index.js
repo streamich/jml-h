@@ -55,3 +55,22 @@ function dom(jml, _) {
     return traverse(jml, function (node) { return _.apply(null, node); });
 }
 exports.dom = dom;
+function tags(col, _, list) {
+    if (col === void 0) { col = {}; }
+    if (_ === void 0) { _ = h; }
+    if (list === void 0) { list = ['div', 'span', 'img']; }
+    var _loop_1 = function(tag) {
+        col[tag] = function (attributes) {
+            var children = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                children[_i - 1] = arguments[_i];
+            }
+            return _.apply(null, [tag, attributes].concat(children));
+        };
+    };
+    for (var _i = 0, list_1 = list; _i < list_1.length; _i++) {
+        var tag = list_1[_i];
+        _loop_1(tag);
+    }
+}
+exports.tags = tags;

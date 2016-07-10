@@ -129,3 +129,8 @@ var vdom = lib.dom(
     ]
 );
 console.log(vdom);
+
+var l = {};
+lib.tags(l, lib.h);
+console.log(l.div({'class': 'test'}, l.span(null, 'Hello')));
+

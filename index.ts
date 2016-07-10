@@ -4,6 +4,7 @@ export type Tname = string;
 export type Tattributes = {[s: string]: number|string|boolean};
 export type Tchild = any; // `any` just becase TypeScript does not allow circular references.
 export type Ttag = [Tname, Tattributes, Tchild[]];
+export type TVirtualHypertext = (tag: string, attributes: any, ...children: any[]) => any;
 
 
 export function attr(attributes) {
@@ -58,4 +59,10 @@ export function traverse(jml, callback) {
 
 export function dom(jml, _ = h) {
     return traverse(jml, (node) => { return _.apply(null, node); });
+}
+
+
+export function tags(col: any = {}, _: TVirtualHypertext = h, list: string[] = ['div', 'span', 'img']) {
+    for(let tag of list)
+        col[tag] = (attributes, ...children: any[]) => _.apply(null, [tag, attributes, ...children]);
 }
