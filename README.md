@@ -132,6 +132,23 @@ var h = require('virtual-dom/h');
 lib.dom(jml, h);
 ```
 
+#### `map(transform: (node: JsonMLNode) => JsonMLNode, h: VHypertext): VHypertext`
+
+Based on existing hypertext function `h` creates a new hypertext function that applies `transform` function
+to every JsonML node before giving it to the original `h`.
+
+For example, replace `div` tags with `span` tags:
+
+```js
+var jml = ['div', null, 'Hello'];
+function divToSpan(node) {
+    if(node[0] === 'div') node[0] = 'span';
+    return node;
+}
+var new_h = lib.map(divToSpan, lib.h);
+console.log(lib.dom(jml, new_h));
+```
+
 ## What is `JsonML`
 
 `JsonML` is a compact representation of `XML/HTML` as JSON or JavaScript objects. Consider the following

@@ -134,3 +134,12 @@ var l = {};
 lib.tags(l, lib.h);
 console.log(l.div({'class': 'test'}, l.span(null, 'Hello')));
 
+
+var jml = ['div', null, 'Hello'];
+function divToSpan(node) {
+    if(node[0] === 'div') node[0] = 'span';
+    return node;
+}
+var new_h = lib.map(divToSpan, lib.h);
+console.log(lib.dom(jml, new_h));
+

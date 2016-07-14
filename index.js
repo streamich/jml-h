@@ -74,3 +74,13 @@ function tags(col, _, list) {
     }
 }
 exports.tags = tags;
+exports.map = function (transform, _) {
+    if (_ === void 0) { _ = h; }
+    return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i - 0] = arguments[_i];
+        }
+        return _.apply(null, transform(args));
+    };
+};

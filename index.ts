@@ -66,3 +66,6 @@ export function tags(col: any = {}, _: TVirtualHypertext = h, list: string[] = [
     for(let tag of list)
         col[tag] = (attributes, ...children: any[]) => _.apply(null, [tag, attributes, ...children]);
 }
+
+
+export var map = (transform, _ = h) => (...args) => _.apply(null, transform(args));
