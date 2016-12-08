@@ -59,6 +59,29 @@ export function traverse(jml, callback) {
     return callback(list);
 }
 
+export function topDown(jml, callback) {
+    if(!(jml instanceof Array)) {
+        if(typeof jml === 'object') return null;
+        else return jml;
+    }
+
+    jml = callback(jml);
+
+    var attr = jml[1];
+    var children_start = 2;
+    if((attr !== null) && ((typeof attr !== 'object') || (attr instanceof Array))) {
+        children_start = 1;
+    }
+
+    for(var i = children_start; i < jml.length; i++) {
+        var child = jml[i];
+        var res = topDown(child, callback);
+        jml[i] = res || null;
+    }
+
+    return jml;
+}
+
 
 export function dom(jml, _ = h) {
     return traverse(jml, (node) => { return _.apply(null, node); });
