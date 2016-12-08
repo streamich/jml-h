@@ -31,8 +31,10 @@ function _c(child, list, callback) {
         else
             list.push(traverse(child, callback));
     }
-    else
-        list.push(child);
+    else {
+        if (typeof child !== 'object')
+            list.push(child);
+    }
 }
 function traverse(jml, callback) {
     var children_start = 2;
@@ -55,6 +57,7 @@ function dom(jml, _) {
     return traverse(jml, function (node) { return _.apply(null, node); });
 }
 exports.dom = dom;
+// Create collection of `tag(attr, ..childrend)` functions
 function tags(col, _, list) {
     if (col === void 0) { col = {}; }
     if (_ === void 0) { _ = h; }

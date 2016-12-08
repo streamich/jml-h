@@ -34,7 +34,10 @@ function _c(child, list, callback) {
             for(var j = 0; j < child.length; j++)
                 _c(child[j], list, callback);
         else list.push(traverse(child, callback));
-    } else list.push(child);
+    } else {
+        if(typeof child !== 'object')
+            list.push(child);
+    }
 }
 
 export function traverse(jml, callback) {
@@ -62,6 +65,7 @@ export function dom(jml, _ = h) {
 }
 
 
+// Create collection of `tag(attr, ..childrend)` functions
 export function tags(col: any = {}, _: TVirtualHypertext = h, list: string[] = ['div', 'span', 'img']) {
     for(let tag of list)
         col[tag] = (attributes, ...children: any[]) => _.apply(null, [tag, attributes, ...children]);
