@@ -41,6 +41,8 @@ function _c(child, list, callback) {
 }
 
 export function traverse(jml, callback) {
+    if(!jml) return null;
+
     var children_start = 2;
     var attr = jml[1];
 
@@ -60,6 +62,8 @@ export function traverse(jml, callback) {
 }
 
 export function topDown(jml, callback) {
+    if(!jml) return null;
+
     if(!(jml instanceof Array)) {
         if(typeof jml === 'object') return null;
         else return jml;
